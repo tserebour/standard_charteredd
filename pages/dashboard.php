@@ -1,38 +1,41 @@
 <?php
 // pages/dashboard.php
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../includes/utils.php';
 
-$data = get_data();
-$user = $data['user'];
-$accounts = $data['accounts'];
+// Fetch current user details if needed (mostly session has it)
+$user_id = $_SESSION['user_id'];
+$user_name = $_SESSION['full_name'];
+
+// Fetch Accounts
+try {
+    $stmt = $pdo->prepare("SELECT * FROM accounts WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $accounts = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // In a real app we'd show a friendly error
+    $accounts = [];
+}
+
 $page_title = "Overview";
 ?>
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
 
-<!-- Sidebar is included in header.php wrapper if we structure it right, 
-     but currently header.php just opens <body d-flex>. 
-     Let's verify header structure.
-     Header opens <div class="d-flex">.
--->
 <?php include __DIR__ . '/../includes/sidebar.php'; ?>
 
 <main class="main-content flex-grow-1 bg-light">
     <!-- Top Bar -->
     <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
         <div>
-            <h1 class="h2 mb-0">Good afternoon,
-                <?php echo htmlspecialchars(explode(' ', $user['name'])[0]); ?>
-            </h1>
-            <p class="text-muted small mb-0">Last login:
-                <?php echo htmlspecialchars($user['last_login']); ?>
-            </p>
+            <h1 class="h2 mb-0">Good afternoon, <?php echo htmlspecialchars(explode(' ', $user_name)[0]); ?></h1>
+            <p class="text-muted small mb-0">Last login: <?php echo date('Y-m-d H:i'); // Placeholder for now ?></p>
         </div>
         <div class="d-flex align-items-center gap-3">
             <a href="#" class="text-secondary position-relative">
                 <i class="bi bi-bell fs-5"></i>
-                <span
-                    class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
                     <span class="visually-hidden">New alerts</span>
                 </span>
             </a>
@@ -44,9 +47,22 @@ $page_title = "Overview";
     <section class="mb-5">
         <h2 class="h4 mb-3">Your Accounts</h2>
         <div class="row">
-            <?php foreach ($accounts as $account): ?>
-                <?php include __DIR__ . '/../includes/components/account-summary.php'; ?>
-            <?php endforeach; ?>
+            <?php if (empty($accounts)): ?>
+                <div class="alert alert-info">No accounts found.</div>
+            <?php else: ?>
+                <?php foreach ($accounts as $account): ?>
+                    <?php 
+                        // Ensure keys match what component checks
+                        // Database columns are: id, user_id, type, account_number, balance, currency
+                        // Component expects: type, number, name, balance, currency.
+                        // We map 'type' + ' Account' to 'name' for display if needed or just query it.
+                        $account['name'] = $account['type'] . ' Account'; 
+                        $account['number'] = $account['account_number'];
+                        
+                        include __DIR__ . '/../includes/components/account-summary.php'; 
+                    ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </section>
 

@@ -1,9 +1,21 @@
 <?php
 // pages/transfers-new.php
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../includes/utils.php';
 
-$data = get_data();
-$accounts = $data['accounts'];
+// Fetch Accounts
+$user_id = $_SESSION['user_id'];
+$accounts = [];
+try {
+    $stmt = $pdo->prepare("SELECT * FROM accounts WHERE user_id = ?");
+    $stmt->execute([$user_id]);
+    $accounts = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Handling
+}
+
+$success_ref = $_GET['ref'] ?? null;
 $page_title = "New Transfer";
 ?>
 
@@ -11,43 +23,57 @@ $page_title = "New Transfer";
 <?php include __DIR__ . '/../includes/sidebar.php'; ?>
 
 <main class="main-content flex-grow-1 bg-light">
-    <!-- Top Bar -->
-    <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
-        <h1 class="h2 mb-0">Transfers</h1>
-        <div class="d-flex align-items-center gap-3">
-            <a href="#" class="btn btn-sm btn-outline-secondary">Help</a>
-        </div>
+    <header class="mb-4 pb-3 border-bottom">
+        <h1 class="h2 mb-0">Make a Transfer</h1>
     </header>
 
-    <div class="container-fluid p-0">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body p-4 p-md-5">
 
-                <!-- Wizard Progress (Optional visual) -->
-                <div class="mb-4 d-none" id="wizardProgress">
-                    <div class="progress" style="height: 4px;">
-                        <div class="progress-bar" role="progressbar" style="width: 33%" id="progressBar"></div>
-                    </div>
-                </div>
+                    <?php if ($success_ref): ?>
+                        <!-- Success State (Server Rendered) -->
+                        <div id="transferStep3" class="text-center animate-fade-in">
+                            <div class="mb-4">
+                                <div class="bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+                                    style="width: 80px; height: 80px;">
+                                    <i class="bi bi-check-lg fs-1"></i>
+                                </div>
+                            </div>
+                            <h3 class="h4 mb-3">Transfer Successful!</h3>
+                            <p class="text-muted mb-4">Your funds have been securely transferred.</p>
 
-                <div class="card shadow-sm border-0">
-                    <div class="card-body p-4">
+                            <div class="bg-light p-3 rounded mb-4 d-inline-block">
+                                <span class="text-muted small d-block">Reference ID</span>
+                                <span class="font-monospace fw-bold" id="successRef">
+                                    <?php echo htmlspecialchars($success_ref); ?>
+                                </span>
+                            </div>
 
-                        <!-- Step 1: Details -->
-                        <div id="transferStep1">
-                            <h2 class="h4 mb-4">Transfer Details</h2>
-                            <form id="transferForm">
+                            <div class="d-grid gap-2 d-sm-flex justify-content-center">
+                                <a href="dashboard.php" class="btn btn-outline-secondary">Return to Dashboard</a>
+                                <a href="transfers-new.php" class="btn btn-primary">Make Another Transfer</a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+
+                        <!-- Standard Form Submission -->
+                        <form id="transferForm" action="../actions/process-transfer.php" method="POST">
+                            <div id="transferStep1">
+                                <h3 class="h5 mb-4">Transfer Details</h3>
+
                                 <div class="mb-3">
                                     <label class="form-label">From Account</label>
-                                    <select class="form-select form-select-lg" id="fromAccount">
+                                    <select class="form-select" id="fromAccount" name="from_account">
                                         <?php foreach ($accounts as $acc): ?>
-                                            <option value="<?php echo $acc['id']; ?>"
-                                                data-name="<?php echo $acc['name']; ?>"
-                                                data-num="<?php echo mask_account($acc['number']); ?>"
-                                                data-bal="<?php echo $acc['balance']; ?>">
-                                                <?php echo $acc['name']; ?> (
-                                                <?php echo mask_account($acc['number']); ?>) -
-                                                <?php echo format_currency($acc['balance'], $acc['currency']); ?>
+                                            <option value="<?php echo $acc['id']; ?>" data-bal="<?php echo $acc['balance']; ?>"
+                                                data-num="<?php echo $acc['account_number']; ?>"
+                                                data-name="<?php echo $acc['type']; ?>">
+                                                <?php echo $acc['type']; ?> (...
+                                                <?php echo substr($acc['account_number'], -4); ?>)
+                                                -
+                                                <?php echo format_currency($acc['balance']); ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -55,122 +81,128 @@ $page_title = "New Transfer";
 
                                 <div class="mb-3">
                                     <label class="form-label">To Payee</label>
-                                    <select class="form-select" id="toPayee">
-                                        <option value="new">Add New Payee...</option>
-                                        <option value="saved_1">Electric Company</option>
-                                        <option value="saved_2">Mom & Dad</option>
-                                        <option value="saved_3">Landlord</option>
-                                        <?php
-                                        // Add internal accounts as payees too (excluding current)
-                                        foreach ($accounts as $acc) {
-                                            echo "<option value='internal_{$acc['id']}'>{$acc['name']} (Internal)</option>";
-                                        }
-                                        ?>
+                                    <select class="form-select" id="toPayee" name="to_payee">
+                                        <option value="new">Select Payee...</option>
+                                        <optgroup label="My Accounts">
+                                            <?php foreach ($accounts as $acc): ?>
+                                                <option value="<?php echo $acc['id']; ?>">
+                                                    <?php echo $acc['type']; ?> (...
+                                                    <?php echo substr($acc['account_number'], -4); ?>)
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </optgroup>
+                                        <optgroup label="Recent">
+                                            <option value="external_1">Mom & Dad</option>
+                                            <option value="external_2">Landlord</option>
+                                        </optgroup>
                                     </select>
                                 </div>
+                                <input type="hidden" name="payee_name" id="hiddenPayeeName" value="External">
 
-                                <div class="mb-3 d-none" id="newPayeeFields">
-                                    <div class="row g-2">
-                                        <div class="col-md-6">
-                                            <label class="form-label small">Payee Name</label>
-                                            <input type="text" class="form-control" id="payeeName">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label class="form-label small">Account Number</label>
-                                            <input type="text" class="form-control" id="payeeIban">
-                                        </div>
+                                <div id="newPayeeFields" class="d-none mb-3 p-3 bg-light rounded">
+                                    <div class="mb-2">
+                                        <label class="form-label small">Payee Name</label>
+                                        <input type="text" class="form-control form-control-sm">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label small">Account Number</label>
+                                        <input type="text" class="form-control form-control-sm">
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Amount</label>
-                                        <div class="input-group input-group-lg">
-                                            <span class="input-group-text">$</span>
-                                            <input type="number" class="form-control" id="amount" step="0.01" min="0.01"
-                                                placeholder="0.00">
-                                        </div>
-                                        <div class="form-text text-danger d-none" id="amountError">Insufficient funds.
-                                        </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Amount</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <input type="number" class="form-control" id="amount" name="amount"
+                                            placeholder="0.00" step="0.01">
                                     </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label">Date</label>
-                                        <input type="date" class="form-control form-control-lg" id="date"
-                                            value="<?php echo date('Y-m-d'); ?>">
+                                    <div id="amountError" class="form-text text-danger d-none">
+                                        Insufficient funds.
                                     </div>
                                 </div>
 
-                                <div class="d-grid mt-4">
-                                    <button type="button" class="btn btn-primary btn-lg" id="btnToReview">Continue to
+                                <div class="mb-4">
+                                    <label class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="date" name="date"
+                                        value="<?php echo date('Y-m-d'); ?>">
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="button" class="btn btn-primary" id="btnToReview">Continue to
                                         Review</button>
                                 </div>
-                            </form>
-                        </div>
-
-                        <!-- Step 2: Review -->
-                        <div id="transferStep2" class="d-none">
-                            <h2 class="h4 mb-4">Review Transfer</h2>
-
-                            <dl class="row mb-4">
-                                <dt class="col-sm-4 text-muted">From</dt>
-                                <dd class="col-sm-8 fw-bold" id="reviewFrom">Everyday Checking</dd>
-
-                                <dt class="col-sm-4 text-muted">To</dt>
-                                <dd class="col-sm-8 fw-bold" id="reviewTo">Electric Company</dd>
-
-                                <dt class="col-sm-4 text-muted">Date</dt>
-                                <dd class="col-sm-8" id="reviewDate">Today</dd>
-
-                                <dt class="col-sm-4 text-muted">Amount</dt>
-                                <dd class="col-sm-8 fs-4 fw-bold text-brand" id="reviewAmount">$0.00</dd>
-
-                                <dt class="col-sm-4 text-muted">Fees</dt>
-                                <dd class="col-sm-8">$0.00</dd>
-                            </dl>
-
-                            <!-- Large Transfer Confirmation (Conditional) -->
-                            <div class="alert alert-warning d-none mb-4" id="largeTransferWarning">
-                                <i class="bi bi-shield-exclamation me-2"></i>
-                                <strong>Large Transfer:</strong> Please verify details carefully.
                             </div>
 
-                            <div class="d-flex gap-3">
-                                <button type="button" class="btn btn-outline-secondary flex-fill"
-                                    id="btnBackToStep1">Edit</button>
-                                <button type="button" class="btn btn-primary flex-fill fw-bold" id="btnConfirm">Confirm
-                                    Transfer</button>
-                            </div>
-                        </div>
+                            <!-- Step 2: Review (Client-side display only, assuming no sensitive data leak) -->
+                            <div id="transferStep2" class="d-none">
+                                <h3 class="h5 mb-4">Review Transfer</h3>
 
-                        <!-- Step 3: Success -->
-                        <div id="transferStep3" class="d-none text-center py-4">
-                            <div class="mb-4 text-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor"
-                                    class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-                                </svg>
-                            </div>
-                            <h2 class="h4">Transfer Successful</h2>
-                            <p class="text-muted">Your transaction has been processed.</p>
+                                <div class="bg-light p-3 rounded mb-4">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">From</span>
+                                        <span class="fw-bold" id="reviewFrom">Checking (...)</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">To</span>
+                                        <span class="fw-bold" id="reviewTo">Mom & Dad</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">Date</span>
+                                        <span id="reviewDate">2023-10-25</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted">Amount</span>
+                                        <span class="fs-4 fw-bold text-primary" id="reviewAmount">$0.00</span>
+                                    </div>
+                                </div>
 
-                            <div class="bg-light p-3 rounded d-inline-block mb-4 text-start">
-                                <div class="small text-muted mb-1">Reference ID</div>
-                                <div class="font-monospace fw-bold" id="successRef">TR-XXXXXXXX</div>
-                            </div>
+                                <div id="largeTransferWarning" class="alert alert-warning d-flex align-items-center d-none"
+                                    role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"></i>
+                                    <div>
+                                        Large transfer detected. Please review carefully.
+                                    </div>
+                                </div>
 
-                            <div class="d-grid gap-2 col-md-6 mx-auto">
-                                <a href="dashboard.php" class="btn btn-primary">Return to Dashboard</a>
-                                <button type="button" class="btn btn-link text-decoration-none"
-                                    onclick="location.reload()">Make another transfer</button>
+                                <div class="d-grid gap-2">
+                                    <button type="button" class="btn btn-primary" id="btnConfirm">Confirm Transfer</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="btnBackToStep1">Back to
+                                        Edit</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
+                    <?php endif; ?>
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btnConfirm = document.getElementById('btnConfirm');
+        const form = document.getElementById('transferForm');
+        const payeeSelect = document.getElementById('toPayee');
+        const hiddenPayeeName = document.getElementById('hiddenPayeeName');
+
+        if (btnConfirm && form) {
+            // Replace button to remove existing listeners
+            const newBtn = btnConfirm.cloneNode(true);
+            btnConfirm.parentNode.replaceChild(newBtn, btnConfirm);
+
+            newBtn.addEventListener('click', () => {
+                if (payeeSelect && payeeSelect.selectedIndex >= 0) {
+                    hiddenPayeeName.value = payeeSelect.options[payeeSelect.selectedIndex].text;
+                }
+                newBtn.disabled = true;
+                newBtn.innerText = 'Processing...';
+                form.submit();
+            });
+        }
+    });
+</script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

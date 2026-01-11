@@ -39,8 +39,12 @@
                 </div>
             </div>
             <div class="flex-grow-1 ms-3">
-                <div class="fw-bold">Alex Morgan</div>
-                <div class="small text-muted">ID: 8839201</div>
+                <div class="fw-bold">
+                    <?php echo htmlspecialchars($_SESSION['full_name'] ?? 'User'); ?>
+                </div>
+                <div class="small text-muted">ID:
+                    <?php echo $_SESSION['user_id'] ?? '...'; ?>
+                </div>
             </div>
             <a href="login.php" class="text-muted"><i class="bi bi-box-arrow-right"></i></a>
         </div>

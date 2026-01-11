@@ -34,15 +34,16 @@
 
             <div class="card shadow-sm border-0">
                 <div class="card-body p-4">
-                    <form id="loginForm">
+                    <form id="loginForm" action="../actions/login.php" method="POST">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" required autocomplete="username">
+                            <input type="text" class="form-control" id="username" name="username" required
+                                autocomplete="username">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password" required
+                                <input type="password" class="form-control" id="password" name="password" required
                                     autocomplete="current-password">
                                 <button class="btn btn-outline-secondary" type="button" id="togglePassword">
                                     <i class="bi bi-eye"></i>

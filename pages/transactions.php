@@ -1,142 +1,210 @@
 <?php
 // pages/transactions.php
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../includes/utils.php';
 
-$data = get_data();
-$transactions = $data['transactions'];
-$accounts = $data['accounts'];
+$user_id = $_SESSION['user_id'];
 $page_title = "Transactions";
+
+// 1. Fetch User Accounts for Filter
+try {
+    $stmtAcct = $pdo->prepare("SELECT id, type, account_number FROM accounts WHERE user_id = ?");
+    $stmtAcct->execute([$user_id]);
+    $accounts = $stmtAcct->fetchAll();
+    // Get list of Account IDs for validation
+    $account_ids = array_column($accounts, 'id');
+} catch (PDOException $e) {
+    $accounts = [];
+    $account_ids = [];
+}
+
+// 2. Build Query Filters
+$where = ["t.account_id IN (SELECT id FROM accounts WHERE user_id = ?)"];
+$params = [$user_id];
+
+// Filter: Account
+if (!empty($_GET['account']) && in_array($_GET['account'], $account_ids)) {
+    $where[] = "t.account_id = ?";
+    $params[] = $_GET['account'];
+}
+
+// Filter: Search (Description)
+if (!empty($_GET['search'])) {
+    $where[] = "t.description LIKE ?";
+    $params[] = '%' . $_GET['search'] . '%';
+}
+
+// Filter: Date
+if (!empty($_GET['date_from'])) {
+    $where[] = "t.created_at >= ?";
+    $params[] = $_GET['date_from'] . ' 00:00:00';
+}
+if (!empty($_GET['date_to'])) {
+    $where[] = "t.created_at <= ?";
+    $params[] = $_GET['date_to'] . ' 23:59:59';
+}
+
+// 3. Pagination Setup
+$page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
+if ($page < 1)
+    $page = 1;
+$limit = 10;
+$offset = ($page - 1) * $limit;
+
+// Count Total
+$sqlCount = "SELECT COUNT(*) FROM transactions t JOIN accounts a ON t.account_id = a.id WHERE " . implode(" AND ", $where);
+$stmtCount = $pdo->prepare($sqlCount);
+$stmtCount->execute($params);
+$total_rows = $stmtCount->fetchColumn();
+$total_pages = ceil($total_rows / $limit);
+
+// Fetch Data
+// Note: We join accounts to maybe show valid account name if needed, but mostly just filtering.
+$sql = "SELECT t.*, a.type as account_type FROM transactions t 
+        JOIN accounts a ON t.account_id = a.id 
+        WHERE " . implode(" AND ", $where) . " 
+        ORDER BY t.created_at DESC 
+        LIMIT $limit OFFSET $offset";
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$transactions = $stmt->fetchAll();
+
 ?>
 
 <?php include __DIR__ . '/../includes/header.php'; ?>
 <?php include __DIR__ . '/../includes/sidebar.php'; ?>
 
 <main class="main-content flex-grow-1 bg-light">
-    <header class="mb-4 pb-3 border-bottom">
-        <h1 class="h2 mb-3">Transactions</h1>
+    <!-- Header -->
+    <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
+        <h1 class="h2 mb-0">Transactions</h1>
 
-        <!-- Filters (Visual only) -->
-        <div class="d-flex flex-wrap gap-2">
-            <div class="input-group" style="max-width: 300px;">
-                <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                <input type="text" class="form-control" id="txSearch" placeholder="Search transactions...">
-            </div>
-
-            <select class="form-select w-auto">
-                <option selected>All Accounts</option>
-                <?php foreach ($accounts as $acc): ?>
-                    <option value="<?php echo $acc['id']; ?>">
-                        <?php echo $acc['name']; ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
-            <button class="btn btn-outline-secondary"><i class="bi bi-calendar3 me-2"></i>Date Range</button>
-            <button class="btn btn-outline-secondary"><i class="bi bi-download me-2"></i>Export</button>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-download me-1"></i> Export
+            </button>
+            <button class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-printer me-1"></i> Print
+            </button>
         </div>
     </header>
 
-    <div class="card border-0 shadow-sm">
+    <!-- Filters -->
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-body">
+            <form method="GET" action="transactions.php" class="row g-3">
+                <div class="col-md-3">
+                    <label class="form-label small text-muted">Search</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control border-start-0 ps-0" name="search"
+                            placeholder="Description..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label small text-muted">Account</label>
+                    <select class="form-select" name="account" onchange="this.form.submit()">
+                        <option value="">All Accounts</option>
+                        <?php foreach ($accounts as $acc): ?>
+                            <option value="<?php echo $acc['id']; ?>" <?php echo (isset($_GET['account']) && $_GET['account'] == $acc['id']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($acc['type']); ?>
+                                (...<?php echo substr($acc['account_number'], -4); ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <!-- Date filters could go here too, preserving existing GET params if complex JS, but simplified for now -->
+                <div class="col-md-3 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary w-100">Filter</button>
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <a href="transactions.php" class="btn btn-outline-secondary w-100">Reset</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="card shadow-sm border-0">
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0" id="txTable">
-                    <thead class="table-light">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light">
                         <tr>
-                            <th class="ps-4">Date</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th class="text-end pe-4">Amount</th>
+                            <th class="ps-4 py-3">Date</th>
+                            <th class="py-3">Description</th>
+                            <th class="py-3">Category</th>
+                            <th class="pe-4 py-3 text-end">Amount</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($transactions as $tx): ?>
-                            <tr class="tx-row">
-                                <td class="ps-4 text-nowrap text-secondary small">
-                                    <?php echo date('d M Y', strtotime($tx['date'])); ?>
-                                </td>
-                                <td>
-                                    <div class="fw-medium text-truncate" style="max-width: 350px;">
-                                        <?php echo htmlspecialchars($tx['description']); ?>
-                                    </div>
-                                    <div class="small text-muted font-monospace">
-                                        <?php echo $tx['id']; ?>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="badge bg-light text-dark border fw-normal">Uncategorized</span>
-                                </td>
-                                <td class="text-end pe-4">
-                                    <span class="fw-bold <?php echo ($tx['amount'] < 0) ? '' : 'text-success'; ?>">
-                                        <?php echo format_currency($tx['amount']); ?>
-                                    </span>
+                        <?php if (empty($transactions)): ?>
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-muted">
+                                    No transactions found.
                                 </td>
                             </tr>
-                        <?php endforeach; ?>
-
-                        <!-- Empty State (Hidden by default) -->
-                        <tr id="noResults" class="d-none">
-                            <td colspan="4" class="text-center py-5">
-                                <div class="text-muted mb-2"><i class="bi bi-search fs-1"></i></div>
-                                <p class="h6 text-muted">No transactions found matching your criteria.</p>
-                                <button class="btn btn-sm btn-outline-primary" onclick="resetFilters()">Reset
-                                    Filters</button>
-                            </td>
-                        </tr>
-
+                        <?php else: ?>
+                            <?php foreach ($transactions as $t): ?>
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="fw-bold"><?php echo date('M d, Y', strtotime($t['created_at'])); ?></div>
+                                        <div class="small text-muted"><?php echo date('H:i', strtotime($t['created_at'])); ?>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold text-truncate" style="max-width: 250px;">
+                                            <?php echo htmlspecialchars($t['description']); ?>
+                                        </div>
+                                        <div class="small text-muted"><?php echo htmlspecialchars($t['account_type']); ?></div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border">
+                                            <?php echo ucfirst($t['type']); ?>
+                                        </span>
+                                    </td>
+                                    <td class="pe-4 text-end">
+                                        <span class="fw-bold <?php echo $t['amount'] < 0 ? 'text-dark' : 'text-success'; ?>">
+                                            <?php echo ($t['amount'] > 0 ? '+' : '') . format_currency($t['amount']); ?>
+                                        </span>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="card-footer bg-white py-3 border-top-0">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination pagination-sm justify-content-center mb-0">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <!-- Pagination -->
+        <?php if ($total_pages > 1): ?>
+            <div class="card-footer bg-white py-3">
+                <nav>
+                    <ul class="pagination justify-content-center mb-0">
+                        <li class="page-item <?php echo $page <= 1 ? 'disabled' : ''; ?>">
+                            <a class="page-link"
+                                href="?page=<?php echo $page - 1; ?>&account=<?php echo htmlspecialchars($_GET['account'] ?? ''); ?>&search=<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">Previous</a>
+                        </li>
+                        <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                            <li class="page-item <?php echo $page == $i ? 'active' : ''; ?>">
+                                <a class="page-link"
+                                    href="?page=<?php echo $i; ?>&account=<?php echo htmlspecialchars($_GET['account'] ?? ''); ?>&search=<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                                    <?php echo $i; ?>
+                                </a>
+                            </li>
+                        <?php endfor; ?>
+                        <li class="page-item <?php echo $page >= $total_pages ? 'disabled' : ''; ?>">
+                            <a class="page-link"
+                                href="?page=<?php echo $page + 1; ?>&account=<?php echo htmlspecialchars($_GET['account'] ?? ''); ?>&search=<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">Next</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
+
 </main>
-
-<script>
-    // Simple client-side search
-    const searchInput = document.getElementById('txSearch');
-    const table = document.getElementById('txTable');
-
-    if (searchInput && table) {
-        searchInput.addEventListener('keyup', function () {
-            const filter = this.value.toLowerCase();
-            const rows = table.querySelectorAll('tbody tr.tx-row');
-            let hasVisible = false;
-
-            rows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    row.classList.remove('d-none');
-                    hasVisible = true;
-                } else {
-                    row.classList.add('d-none');
-                }
-            });
-
-            const noResults = document.getElementById('noResults');
-            if (noResults) {
-                if (!hasVisible) noResults.classList.remove('d-none');
-                else noResults.classList.add('d-none');
-            }
-        });
-    }
-
-    function resetFilters() {
-        if (searchInput) {
-            searchInput.value = '';
-            searchInput.dispatchEvent(new Event('keyup'));
-        }
-    }
-</script>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>
