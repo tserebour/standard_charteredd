@@ -1,0 +1,98 @@
+{
+  "user": {
+    "name": "Alex Morgan",
+    "email": "a****@example.com",
+    "phone": "+1 (555) ***-9876",
+    "last_login": "2026-01-11 12:45:00"
+  },
+  "accounts": [
+    {
+      "id": "acc_1",
+      "type": "Checking",
+      "name": "Everyday Checking",
+      "number": "****1234",
+      "balance": 12450.50,
+      "currency": "$"
+    },
+    {
+      "id": "acc_2",
+      "type": "Savings",
+      "name": "High Interest Savings",
+      "number": "****5678",
+      "balance": 50000.00,
+      "currency": "$"
+    }
+  ],
+  "cards": [
+    {
+      "id": "card_1",
+      "type": "Credit",
+      "network": "Visa",
+      "number": "XXXX •••• •••• 9999",
+      "expiry": "12/28",
+      "holder": "ALEX MORGAN",
+      "status": "Active",
+      "limit": 15000.00,
+      "balance": 1250.00
+    },
+    {
+      "id": "card_2",
+      "type": "Debit",
+      "network": "Mastercard",
+      "number": "XXXX •••• •••• 1111",
+      "expiry": "10/29",
+      "holder": "ALEX MORGAN",
+      "status": "Active"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "TX-0001234567",
+      "date": "2026-01-10",
+      "description": "CARD - Whole Foods Market",
+      "amount": -145.20,
+      "account_id": "acc_1",
+      "status": "Completed"
+    },
+    {
+      "id": "TX-0001234568",
+      "date": "2026-01-09",
+      "description": "PAYMENT - Electric Company",
+      "amount": -85.50,
+      "account_id": "acc_1",
+      "status": "Completed"
+    },
+    {
+      "id": "TX-0001234569",
+      "date": "2026-01-08",
+      "description": "TRANSFER - Alex Morgan → Savings",
+      "amount": -1000.00,
+      "account_id": "acc_1",
+      "status": "Completed"
+    },
+    {
+      "id": "TX-0001234570",
+      "date": "2026-01-08",
+      "description": "TRANSFER - Checking → Alex Morgan",
+      "amount": 1000.00,
+      "account_id": "acc_2",
+      "status": "Completed"
+    },
+    {
+      "id": "TX-0001234571",
+      "date": "2026-01-05",
+      "description": "DD - Netflix Subscription",
+      "amount": -15.99,
+      "account_id": "acc_1",
+      "status": "Completed"
+    },
+    {
+      "id": "TX-0001234572",
+      "date": "2026-01-01",
+      "description": "PAYMENT - Salary Deposit",
+      "amount": 4500.00,
+      "account_id": "acc_1",
+      "status": "Completed"
+    }
+  ]
+}
