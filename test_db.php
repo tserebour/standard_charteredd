@@ -1,10 +1,9 @@
 <?php
-// config/db.php
-
+// test_db.php
 $host = 'localhost';
 $db = 'new_standard';
 $user = 'root';
-$pass = ''; // Default XAMPP password is empty
+$pass = '';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -16,9 +15,7 @@ $options = [
 
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
+    echo "Connection successful!";
 } catch (\PDOException $e) {
-    // In production we would log this, for now just kill script safely
-    // Don't expose full details to user
-    error_log($e->getMessage());
-    die("Database connection failed. Please check logs.");
+    echo "Connection failed: " . $e->getMessage();
 }

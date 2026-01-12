@@ -15,56 +15,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Login: Form Submission (Dummy Auth)
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const errorBanner = document.getElementById('loginError');
-
-            // Simple dummy check: admin/password or user/user
-            // In a real app, this would be an API call.
-            // For this UI demo, we simulate success for non-empty credentials unless specific "fail" keywords are used.
-
-            if (username === 'fail' || password === 'fail') {
-                errorBanner.classList.remove('d-none');
-            } else {
-                errorBanner.classList.add('d-none');
-                // Simulate redirect delay
-                const btn = loginForm.querySelector('button[type="submit"]');
-                const originalText = btn.innerText;
-                btn.disabled = true;
-                btn.innerText = 'Signing in...';
-
-                setTimeout(() => {
-                    window.location.href = 'dashboard.php';
-                }, 800);
-            }
-        });
-    }
 
     // Forgot Password: Flow
     const forgotForm = document.getElementById('forgotForm');
     if (forgotForm) {
         forgotForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const identifier = document.getElementById('identifier').value;
+            const identifierEl = document.getElementById('identifier');
+            if (!identifierEl) return;
 
-            // Masking logic for demo display
+            const identifier = identifierEl.value;
             let masked = identifier;
             if (identifier.includes('@')) {
                 const parts = identifier.split('@');
                 masked = parts[0].substring(0, 1) + '****@' + parts[1];
             } else {
-                // assume phone
                 masked = identifier.substring(0, 3) + '****' + identifier.substring(identifier.length - 2);
             }
 
-            document.getElementById('confirmDest').textContent = masked;
-            document.getElementById('forgotStep1').classList.add('d-none');
-            document.getElementById('forgotStep2').classList.remove('d-none');
+            const confirmDest = document.getElementById('confirmDest');
+            if (confirmDest) confirmDest.textContent = masked;
+
+            const step1 = document.getElementById('forgotStep1');
+            const step2 = document.getElementById('forgotStep2');
+
+            if (step1) step1.classList.add('d-none');
+            if (step2) step2.classList.remove('d-none');
         });
     }
 
@@ -125,17 +101,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnConfirm = document.getElementById('btnConfirm');
     if (btnConfirm) {
         btnConfirm.addEventListener('click', () => {
-            const btn = btnConfirm;
-            btn.disabled = true;
-            btn.innerText = 'Processing...';
+            btnConfirm.disabled = true;
+            btnConfirm.innerText = 'Processing...';
 
             setTimeout(() => {
-                // Generate random reference
                 const ref = 'TR-' + Math.random().toString(36).substr(2, 8).toUpperCase();
-                document.getElementById('successRef').textContent = ref;
+                const successRef = document.getElementById('successRef');
+                if (successRef) successRef.textContent = ref;
 
-                document.getElementById('transferStep2').classList.add('d-none');
-                document.getElementById('transferStep3').classList.remove('d-none');
+                const step2 = document.getElementById('transferStep2');
+                const step3 = document.getElementById('transferStep3');
+                if (step2) step2.classList.add('d-none');
+                if (step3) step3.classList.remove('d-none');
             }, 1000);
         });
     }
