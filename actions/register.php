@@ -41,6 +41,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare("INSERT INTO users (full_name, username, password_hash, security_question_id, security_answer) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$full_name, $username, $password_hash, $security_question_id, $security_answer]);
 
+        $newUserId = $pdo->lastInsertId();
+
+        // Create initial account for the user
+        // Generate a random 8-digit account number (simulated)
+        $accountNumber = str_pad(mt_rand(1, 99999999), 8, '0', STR_PAD_LEFT);
+
+        // Ensure account number is unique (in a real app we'd loop/check, but for demo this is usually fine)
+        $stmt = $pdo->prepare("INSERT INTO accounts (user_id, type, account_number, balance, currency) VALUES (?, 'Checking', ?, 0.00, 'USD')");
+        $stmt->execute([$newUserId, $accountNumber]);
+
         // Success - Redirect to login with success message
         header("Location: ../pages/login.php?registered=success");
         exit;

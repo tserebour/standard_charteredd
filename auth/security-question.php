@@ -41,17 +41,28 @@ if (!$user || empty($user['question'])) {
 }
 
 $securityQuestionText = $user['question'];
+$userQuestionId = $user['security_question_id'];
 $expectedAnswer = $user['security_answer'] ?? '';
+
+// Fetch all questions for the select dropdown
+try {
+    $stmt = $pdo->query("SELECT * FROM security_questions ORDER BY id ASC");
+    $allQuestions = $stmt->fetchAll();
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    $allQuestions = [];
+}
 
 $error = '';
 // Session-based attempt counter (UI simulation)
 $attempts = $_SESSION['secq_attempts'] ?? 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $submittedQuestionId = $_POST['security_question_id'] ?? '';
     $answer = trim($_POST['security_answer'] ?? '');
 
-    // Simple case-insensitive check for the demo
-    if (strcasecmp($answer, $expectedAnswer) === 0) {
+    // Verify both question ID and answer
+    if ($submittedQuestionId == $userQuestionId && strcasecmp($answer, $expectedAnswer) === 0) {
         // simulated success
         unset($_SESSION['secq_attempts']);
         header('Location: ../pages/dashboard.php');
@@ -59,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $attempts++;
         $_SESSION['secq_attempts'] = $attempts;
-        $error = 'Incorrect answer. Please try again.';
+        $error = 'Incorrect question selection or answer. Please try again.';
     }
 }
 ?>
@@ -169,20 +180,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Security Verification</h2>
         <p>Please answer your security question to continue.</p>
 
-        <div class="form-group">
-            <label>Question:</label>
-            <div style="padding: 10px; background: #e9ecef; border-radius: 4px; margin-bottom: 15px;">
-                <?= htmlspecialchars($securityQuestionText) ?>
-            </div>
-        </div>
-
-        <?php if ($error): ?>
-            <div class="alert">
-                <?= htmlspecialchars($error) ?>
-            </div>
-        <?php endif; ?>
-
         <form method="post">
+            <div class="form-group">
+                <label for="security_question_id">Security Question:</label>
+                <select id="security_question_id" name="security_question_id" class="form-control" required>
+                    <option value="" selected disabled>Choose your security question...</option>
+                    <?php foreach ($allQuestions as $q): ?>
+                        <option value="<?= $q['id'] ?>" <?= ($q['id'] == $userQuestionId) ? 'selected' : '' ?>>
+                            <?= htmlspecialchars($q['question']) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <?php if ($error): ?>
+                <div class="alert">
+                    <?= htmlspecialchars($error) ?>
+                </div>
+            <?php endif; ?>
+
             <div class="form-group">
                 <label for="security_answer">Your Answer</label>
                 <input type="text" id="security_answer" name="security_answer" class="form-control"
@@ -191,12 +207,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <button class="btn" type="submit">Verify Identity</button>
 
-            <small class="text-muted">
-                UI-only simulation. Data is loaded from fixtures.<br>
-                (Hint: The answer is <strong>
-                    <?= htmlspecialchars($user['security_answer']) ?>
-                </strong>)
-            </small>
+            
         </form>
     </div>
 
