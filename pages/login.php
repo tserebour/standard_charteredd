@@ -24,7 +24,11 @@
     <div class="container">
         <div class="login-container">
             <div class="text-center mb-4">
-                <h1 class="h3 mb-3 fw-normal text-brand">Standard Chartered</h1>
+                <div class="logo mb-3">
+                    <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
+                        alt="Standard Chartered" style="max-width: 200px;">
+                </div>
+                <!-- <h1 class="h3 mb-3 fw-normal text-brand">Standard Chartered</h1> -->
                 <p class="text-muted">Secure Online Banking</p>
             </div>
 
