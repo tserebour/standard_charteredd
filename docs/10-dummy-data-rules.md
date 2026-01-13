@@ -1,5 +1,9 @@
 # 10 — Dummy Data Rules
 
+Security Question Data
+- Users have `security_question` and `security_answer` fields.
+- `security_answer` is stored in PLAIN TEXT in fixtures for UI simulation purposes only.
+- Do not use this pattern for real production authentication.
 Balance formats
 - Currency symbol: local currency $ (or configurable token but default $ for examples).
 - Format: use two decimals and thousand separators, e.g., `$12,345.67`.

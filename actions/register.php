@@ -8,9 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
+    $security_question_id = $_POST['security_question_id'] ?? '';
+    $security_answer = trim($_POST['security_answer'] ?? '');
 
     // Basic Validation
-    if (empty($full_name) || empty($username) || empty($password) || empty($confirm_password)) {
+    if (
+        empty($full_name) || empty($username) || empty($password) || empty($confirm_password) ||
+        empty($security_question_id) || empty($security_answer)
+    ) {
         header("Location: ../pages/register.php?error=empty_fields");
         exit;
     }
@@ -33,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert User
-        $stmt = $pdo->prepare("INSERT INTO users (full_name, username, password_hash) VALUES (?, ?, ?)");
-        $stmt->execute([$full_name, $username, $password_hash]);
+        $stmt = $pdo->prepare("INSERT INTO users (full_name, username, password_hash, security_question_id, security_answer) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([$full_name, $username, $password_hash, $security_question_id, $security_answer]);
 
         // Success - Redirect to login with success message
         header("Location: ../pages/login.php?registered=success");

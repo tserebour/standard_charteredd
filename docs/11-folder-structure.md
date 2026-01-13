@@ -3,6 +3,7 @@
 PHP page organization
 - `pages/` — top-level PHP templates mapped to routes (UI-only). Example files:
   - `pages/login.php`
+  - `auth/security-question.php`
   - `pages/dashboard.php`
   - `pages/account-details.php`
   - `pages/transfers-new.php`

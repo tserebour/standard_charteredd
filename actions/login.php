@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['username'] = $user['username'];
             $_SESSION['full_name'] = $user['full_name'];
 
-            header("Location: ../pages/dashboard.php");
+            header("Location: ../auth/security-question.php");
             exit;
         } else {
             // Failure

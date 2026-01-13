@@ -12,6 +12,7 @@ Prohibited assumptions
 - Do not assume the presence of databases, external services, or secret keys.
 - Do not infer or invent encryption, compliance, or transaction processing logic.
 - Do not seed or use real PII, personal data, or production credentials.
+- Security questions must use plain text fixture data. DO NOT implement hashing or real secure storage for this demo feature.
 
 Content and consistency rules
 - Terminology: use these exact terms consistently across files: `Available balance`, `Current balance`, `Pending`, `Masked account`.

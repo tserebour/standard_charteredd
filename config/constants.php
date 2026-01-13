@@ -1,6 +1,12 @@
 <?php
 // config/constants.php
 
-define('APP_NAME', 'Standard Chartered');
-define('CURRENCY_SYMBOL', '$');
-define('BASE_URL', '/standard_charteredd'); // Adjust if deployed elsewhere
+if (!defined('APP_NAME')) {
+    define('APP_NAME', 'Standard Chartered');
+}
+if (!defined('CURRENCY_SYMBOL')) {
+    define('CURRENCY_SYMBOL', '$');
+}
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '/standard_charteredd'); // Adjust if deployed elsewhere
+}

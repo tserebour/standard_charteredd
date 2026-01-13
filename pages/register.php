@@ -1,5 +1,15 @@
 <?php
 // pages/register.php
+require_once __DIR__ . '/../config/db.php';
+
+// Fetch security questions
+try {
+    $stmt = $pdo->query("SELECT * FROM security_questions ORDER BY id ASC");
+    $questions = $stmt->fetchAll();
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    $questions = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +83,22 @@
                             <label for="confirm_password" class="form-label">Confirm Password</label>
                             <input type="password" class="form-control" id="confirm_password" name="confirm_password"
                                 required autocomplete="new-password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="security_question_id" class="form-label">Security Question</label>
+                            <select class="form-select" id="security_question_id" name="security_question_id" required>
+                                <option value="" selected disabled>Choose a security question...</option>
+                                <?php foreach ($questions as $q): ?>
+                                    <option value="<?= $q['id'] ?>">
+                                        <?= htmlspecialchars($q['question']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="security_answer" class="form-label">Security Answer</label>
+                            <input type="text" class="form-control" id="security_answer" name="security_answer" required
+                                placeholder="Enter your answer">
                         </div>
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">Create Account</button>

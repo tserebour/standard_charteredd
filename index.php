@@ -1321,7 +1321,11 @@ function OptanonWrapper() {
 		<h2 class="screen-reader-text">Login</h2>
 		<ul id="site-login-nav__menu" class="site-login-nav__menu">
       <li class="site-login-nav__menu__item tools-menu-item has_children"><a class="site-login-nav__menu__link tools-menu-link" href="pages/login.php" target="_self">Login</a><button class="site-login-nav__menu__item tools-menu-item__toggle sub-menu-toggle" id="sub-menu-69" aria-expanded="false"><span class="screen-reader-text">Expand child menu</span></button><ul class="sub-menu site-login-nav__sub-menu" aria-hidden="true"><li class="site-login-nav__menu__item tools-menu-item"><a class="site-login-nav__menu__link tools-menu-link" href="pages/login.php" target="_blank" rel="noopener noreferrer">Straight2Bank</a></li>
-      <!-- <li class="site-login-nav__menu__item tools-menu-item"><a class="site-login-nav__menu__link tools-menu-link" href="https://www.sc.com/en/banking/banking-for-companies/" target="_blank" rel="noopener noreferrer">About Straight2Bank</a></li><li class="site-login-nav__menu__item tools-menu-item"><a class="site-login-nav__menu__link tools-menu-link" href="https://s2b.standardchartered.com/help/en/safeguard.html" target="_blank" rel="noopener noreferrer">Online Security</a></li></ul></li></ul>	</nav> -->
+      <!-- <li class="site-login-nav__menu__item tools-menu-item"><a class="site-login-nav__menu__link tools-menu-link" href="https://www.sc.com/en/banking/banking-for-companies/" target="_blank" rel="noopener noreferrer">About Straight2Bank</a></li> -->
+      <!-- <li class="site-login-nav__menu__item tools-menu-item"><a class="site-login-nav__menu__link tools-menu-link" href="https://s2b.standardchartered.com/help/en/safeguard.html" target="_blank" rel="noopener noreferrer">Online Security</a></li> -->
+      </ul>
+    </li>
+  </ul>	</nav>
 <div class="site-tools__country">United Kingdom</div>
 </div>
 

@@ -1,11 +1,11 @@
 {
   "user": {
     "name": "Alex Morgan",
-    
     "email": "a****@example.com",
     "phone": "+1 (555) ***-9876",
-    "last_login": "2026-01-11 12:45:00"
-
+    "last_login": "2026-01-11 12:45:00",
+    "security_question": "What is your mother's maiden name?",
+    "security_answer": "Smith"
   },
   "accounts": [
     {

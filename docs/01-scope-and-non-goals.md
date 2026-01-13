@@ -4,7 +4,7 @@ What the project includes (explicit)
 - Static, server-rendered pages using Vanilla PHP templates, HTML, CSS, Bootstrap, and minimal Vanilla JavaScript for non-critical UI interactions.
 - UI patterns for:
   - Public marketing-lite page (static example) and informational footers.
-  - Authentication pages (login, forgot password) rendered as UI-only examples with dummy validation.
+  - Authentication pages (login, security question, forgot password) rendered as UI-only examples with dummy validation.
   - Customer dashboard: account summary, balances, recent transactions, and cards overview.
   - Transfers and payments flow (UI-only, multi-step confirmation screens with dummy results).
   - Transaction search, filters, and paginated lists (UI behavior described; no backend search).
