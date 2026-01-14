@@ -1377,7 +1377,7 @@ function OptanonWrapper() {
 
 
 
-<div class="wp-block-button alignleft"><a class="wp-block-button__link wp-element-button" href="https://www.sc.com/en/campaigns/now-is-your-time/">Explore the campaign</a></div>
+<div class="wp-block-button alignleft"><a class="wp-block-button__link wp-element-button" href="#">Explore the campaign</a></div>
 </div></div>
 
 
@@ -1386,7 +1386,7 @@ function OptanonWrapper() {
 
 
 
-<figure class="wp-block-table alignwide"><table><tbody><tr><td>If you have received a suspicious email (phishing), call (vishing) or text message (smishing) targeting you as a client of Standard Chartered, or identified a fraudulent social media account or webpage impersonating Standard Chartered, report it to us immediately by email <a href="mailto:phishing@sc.com">phishing@sc.com</a>. Please add as many details as possible in your report to assist with our investigation e.g., sender details, attachments, screenshots, and links. Remember, do not respond to requests for personal information or click on links or attachments in suspicious messages. Stay informed about the latest <a href="https://www.sc.com/en/about/fighting-financial-crime/alerts/">methods of fraud detection</a>, and <a href="https://www.sc.com/en/global-security-tips/">global security tips</a>.</td></tr></tbody></table></figure>
+<figure class="wp-block-table alignwide"><table><tbody><tr><td>If you have received a suspicious email (phishing), call (vishing) or text message (smishing) targeting you as a client of Standard Chartered, or identified a fraudulent social media account or webpage impersonating Standard Chartered, report it to us immediately by email <a href="mailto:phishing@sc.com">phishing@sc.com</a>. Please add as many details as possible in your report to assist with our investigation e.g., sender details, attachments, screenshots, and links. Remember, do not respond to requests for personal information or click on links or attachments in suspicious messages. Stay informed about the latest <a href="#">methods of fraud detection</a>, and <a href="https://www.sc.com/en/global-security-tips/">global security tips</a>.</td></tr></tbody></table></figure>
 
 
 
@@ -1418,7 +1418,7 @@ function OptanonWrapper() {
 
 
 
-<p class="has-text-align-center"><a href="https://www.sc.com/uk/events/singapore-dollar-bond-roundtable/">Singapore Dollar Bond Roundtable Report</a></p>
+<p class="has-text-align-center"><a href="#">Singapore Dollar Bond Roundtable Report</a></p>
 </div>
 
 
@@ -1428,7 +1428,7 @@ function OptanonWrapper() {
 
 
 
-<p class="has-text-align-center is-style-default"><a href="https://www.sc.com/uk/events/">Events in the UK</a></p>
+<p class="has-text-align-center is-style-default"><a href="#">Events in the UK</a></p>
 </div>
 
 
@@ -1438,7 +1438,7 @@ function OptanonWrapper() {
 
 
 
-<p class="has-text-align-center is-style-default"><a href="https://www.sc.com/uk/2025/07/14/standard-chartered-london-office-upgrades/">New client suite unveiled at our London office</a></p>
+<p class="has-text-align-center is-style-default"><a href="#">New client suite unveiled at our London office</a></p>
 </div>
 </div>
 
@@ -1499,7 +1499,7 @@ function OptanonWrapper() {
 
 
 
-<div class="wp-block-button alignleft"><a class="wp-block-button__link wp-element-button" href="https://www.sc.com/en/corporate-commercial-institutional/our-global-network/europe-americas/">Discover more on Europe and the Americas</a></div>
+<div class="wp-block-button alignleft"><a class="wp-block-button__link wp-element-button" href="#">Discover more on Europe and the Americas</a></div>
 </div></div>
 
 
@@ -1528,7 +1528,7 @@ function OptanonWrapper() {
 	<nav class="footer__columns__container footer-nav" role="navigation" aria-label="Footer navigation - Column 1">
 		<h2 class="screen-reader-text">Footer navigation - Column 1</h2>
 
-		<div class="site-footer-nav__menu-container menu-1"><ul id="site-footer-nav__menu-1" class="site-footer-nav__menu"><li id="menu-item-212" class="menu-item-home current-menu-item page_item page-item-4 current_page_item menu-item-212 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/" aria-current="page" class="site-footer-nav__link">Home</a></li><li id="menu-item-213" class="menu-item-213 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/about/" class="site-footer-nav__link">About</a></li><li id="menu-item-214" class="menu-item-214 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/news-and-media/" class="site-footer-nav__link">News and media</a></li><li id="menu-item-215" class="menu-item-215 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/careers/" class="site-footer-nav__link">Careers</a></li><li id="menu-item-216" class="menu-item-216 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/contact/" class="site-footer-nav__link">Contact</a></li><li id="menu-item-217" class="menu-item-217 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/sitemap/" class="site-footer-nav__link">Sitemap</a></li></ul></div>	</nav>
+		<div class="site-footer-nav__menu-container menu-1"><ul id="site-footer-nav__menu-1" class="site-footer-nav__menu"><li id="menu-item-212" class="menu-item-home current-menu-item page_item page-item-4 current_page_item menu-item-212 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/" aria-current="page" class="site-footer-nav__link">Home</a></li><li id="menu-item-213" class="menu-item-213 site-footer-nav__menu-item"><a href="#" class="site-footer-nav__link">About</a></li><li id="menu-item-214" class="menu-item-214 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/news-and-media/" class="site-footer-nav__link">News and media</a></li><li id="menu-item-215" class="menu-item-215 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/careers/" class="site-footer-nav__link">Careers</a></li><li id="menu-item-216" class="menu-item-216 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/contact/" class="site-footer-nav__link">Contact</a></li><li id="menu-item-217" class="menu-item-217 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/sitemap/" class="site-footer-nav__link">Sitemap</a></li></ul></div>	</nav>
 </div>
 
 <div class="footer__column">
@@ -1536,7 +1536,7 @@ function OptanonWrapper() {
 	<nav class="footer__columns__container footer-nav" role="navigation" aria-label="Footer navigation - Column 2">
 		<h2 class="screen-reader-text">Footer navigation - Column 2</h2>
 
-		<div class="site-footer-nav__menu-container menu-2"><ul id="site-footer-nav__menu-2" class="site-footer-nav__menu"><li id="menu-item-45" class="menu-item-type-custom menu-item-object-custom menu-item-45 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/" class="site-footer-nav__link" rel="noopener noreferrer">Our global website</a></li><li id="menu-item-46" class="menu-item-type-custom menu-item-object-custom menu-item-46 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/our-locations/" class="site-footer-nav__link" rel="noopener noreferrer">Worldwide locations</a></li><li id="menu-item-47" class="menu-item-type-custom menu-item-object-custom menu-item-47 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/investors/" class="site-footer-nav__link" rel="noopener noreferrer">Investors</a></li><li id="menu-item-48" class="menu-item-type-custom menu-item-object-custom menu-item-48 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/about/fighting-financial-crime/#fighting-fraud" class="site-footer-nav__link" rel="noopener noreferrer">Fighting fraud</a></li><li id="menu-item-49" class="menu-item-type-custom menu-item-object-custom menu-item-49 site-footer-nav__menu-item"><a target="_blank" href="http://www.speakingupsc.ethicspoint.com/" class="site-footer-nav__link" rel="noopener noreferrer">Speaking up</a></li><li id="menu-item-5049" class="menu-item-type-custom menu-item-object-custom menu-item-5049 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/about/sustainability" class="site-footer-nav__link" rel="noopener noreferrer">Sustainability</a></li><li id="menu-item-67" class="menu-item-type-custom menu-item-object-custom menu-item-67 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/37/content/docs/uk-trade-application-forms.pdf" class="site-footer-nav__link">Trade application forms</a></li><li id="menu-item-3503" class="menu-item-type-custom menu-item-object-custom menu-item-3503 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/66/content/docs/modern-slavery-statement.pdf" class="site-footer-nav__link">Modern Slavery Statement</a></li><li id="menu-item-4293" class="menu-item-4293 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/app-reimbursement-policy/" class="site-footer-nav__link">APP reimbursement policy</a></li><li id="menu-item-4757" class="menu-item-4757 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/alternative-dispute-resolution-process/" class="site-footer-nav__link">Dispute resolution</a></li></ul></div>	</nav>
+		<div class="site-footer-nav__menu-container menu-2"><ul id="site-footer-nav__menu-2" class="site-footer-nav__menu"><li id="menu-item-45" class="menu-item-type-custom menu-item-object-custom menu-item-45 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/" class="site-footer-nav__link" rel="noopener noreferrer">Our global website</a></li><li id="menu-item-46" class="menu-item-type-custom menu-item-object-custom menu-item-46 site-footer-nav__menu-item"><a target="_blank" href="#" class="site-footer-nav__link" rel="noopener noreferrer">Worldwide locations</a></li><li id="menu-item-47" class="menu-item-type-custom menu-item-object-custom menu-item-47 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/investors/" class="site-footer-nav__link" rel="noopener noreferrer">Investors</a></li><li id="menu-item-48" class="menu-item-type-custom menu-item-object-custom menu-item-48 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/about/fighting-financial-crime/#fighting-fraud" class="site-footer-nav__link" rel="noopener noreferrer">Fighting fraud</a></li><li id="menu-item-49" class="menu-item-type-custom menu-item-object-custom menu-item-49 site-footer-nav__menu-item"><a target="_blank" href="http://www.speakingupsc.ethicspoint.com/" class="site-footer-nav__link" rel="noopener noreferrer">Speaking up</a></li><li id="menu-item-5049" class="menu-item-type-custom menu-item-object-custom menu-item-5049 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/en/about/sustainability" class="site-footer-nav__link" rel="noopener noreferrer">Sustainability</a></li><li id="menu-item-67" class="menu-item-type-custom menu-item-object-custom menu-item-67 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/37/content/docs/uk-trade-application-forms.pdf" class="site-footer-nav__link">Trade application forms</a></li><li id="menu-item-3503" class="menu-item-type-custom menu-item-object-custom menu-item-3503 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/66/content/docs/modern-slavery-statement.pdf" class="site-footer-nav__link">Modern Slavery Statement</a></li><li id="menu-item-4293" class="menu-item-4293 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/app-reimbursement-policy/" class="site-footer-nav__link">APP reimbursement policy</a></li><li id="menu-item-4757" class="menu-item-4757 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/alternative-dispute-resolution-process/" class="site-footer-nav__link">Dispute resolution</a></li></ul></div>	</nav>
 </div>
 
 <div class="footer__column">
@@ -1544,7 +1544,7 @@ function OptanonWrapper() {
 	<nav class="footer__columns__container footer-nav" role="navigation" aria-label="Footer navigation - Regulatory content">
 		<h2 class="screen-reader-text">Footer navigation - Regulatory content</h2>
 
-		<div class="site-footer-nav__menu-container menu-4"><ul id="site-footer-nav__menu-4" class="site-footer-nav__menu"><li id="menu-item-56" class="menu-item-type-custom menu-item-object-custom menu-item-56 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/terms-and-conditions/" class="site-footer-nav__link">Terms and Conditions</a></li><li id="menu-item-63" class="menu-item-type-custom menu-item-object-custom menu-item-63 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/uk/uploads/sites/66/content/docs/annual-report-2024-strategic-report.pdf" class="site-footer-nav__link" rel="noopener noreferrer">Strategic report and financial statements</a></li><li id="menu-item-65" class="menu-item-type-custom menu-item-object-custom menu-item-65 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/uk/uploads/sites/66/content/docs/annual-report-2024-directors-report.pdf" class="site-footer-nav__link" rel="noopener noreferrer">Director’s report and financial statements</a></li><li id="menu-item-68" class="menu-item-type-custom menu-item-object-custom menu-item-68 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/37/content/docs/uk-royal-charter-bye-laws-and-rules.pdf" class="site-footer-nav__link">SCB royal charter bye-laws and rules</a></li><li id="menu-item-1892" class="menu-item-1892 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/privacy-policy/" class="site-footer-nav__link">Privacy policy</a></li><li id="menu-item-716" class="menu-item-privacy-policy menu-item-716 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/cookie-consent/" class="site-footer-nav__link">Cookie policy</a></li><li class="menu-item"><a class="ot-sdk-show-settings">Manage Cookies</a></li></ul></div>	</nav>
+		<div class="site-footer-nav__menu-container menu-4"><ul id="site-footer-nav__menu-4" class="site-footer-nav__menu"><li id="menu-item-56" class="menu-item-type-custom menu-item-object-custom menu-item-56 site-footer-nav__menu-item"><a href="#" class="site-footer-nav__link">Terms and Conditions</a></li><li id="menu-item-63" class="menu-item-type-custom menu-item-object-custom menu-item-63 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/uk/uploads/sites/66/content/docs/annual-report-2024-strategic-report.pdf" class="site-footer-nav__link" rel="noopener noreferrer">Strategic report and financial statements</a></li><li id="menu-item-65" class="menu-item-type-custom menu-item-object-custom menu-item-65 site-footer-nav__menu-item"><a target="_blank" href="https://www.sc.com/uk/uploads/sites/66/content/docs/annual-report-2024-directors-report.pdf" class="site-footer-nav__link" rel="noopener noreferrer">Director’s report and financial statements</a></li><li id="menu-item-68" class="menu-item-type-custom menu-item-object-custom menu-item-68 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/uploads/sites/37/content/docs/uk-royal-charter-bye-laws-and-rules.pdf" class="site-footer-nav__link">SCB royal charter bye-laws and rules</a></li><li id="menu-item-1892" class="menu-item-1892 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/privacy-policy/" class="site-footer-nav__link">Privacy policy</a></li><li id="menu-item-716" class="menu-item-privacy-policy menu-item-716 site-footer-nav__menu-item"><a href="https://www.sc.com/uk/cookie-consent/" class="site-footer-nav__link">Cookie policy</a></li><li class="menu-item"><a class="ot-sdk-show-settings">Manage Cookies</a></li></ul></div>	</nav>
 </div>
 
 <div class="footer__column">
