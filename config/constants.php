@@ -2,7 +2,7 @@
 // config/constants.php
 
 if (!defined('APP_NAME')) {
-    define('APP_NAME', 'Standward Credit');
+    define('APP_NAME', 'Standward');
 }
 if (!defined('CURRENCY_SYMBOL')) {
     define('CURRENCY_SYMBOL', '$');

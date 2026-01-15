@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standward Credit - Welcome</title>
+    <title>Standward - Welcome</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet">
 </head>
@@ -17,7 +17,7 @@
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
-                <h1 class="mb-4">Standward Credit</h1>
+                <h1 class="mb-4">Standward</h1>
                 <p class="lead mb-4">Secure Retail Banking Interface</p>
                 <div class="d-grid gap-2">
                     <a href="pages/login.php" class="btn btn-primary btn-lg">Login</a>

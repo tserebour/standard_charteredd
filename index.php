@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standward Credit - Safe, Secure, Modern Banking</title>
+    <title>Standward - Safe, Secure, Modern Banking</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -178,7 +178,7 @@
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="bi bi-bank icon-margin-right"></i> Standward Credit
+                <i class="bi bi-bank icon-margin-right"></i> Standward
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
@@ -311,7 +311,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5>Standward Credit</h5>
+                    <h5>Standward</h5>
                     <p class="text-muted">
                         Committed to providing safe, reliable, and forward-thinking banking solutions for everyone.
                     </p>
@@ -337,7 +337,7 @@
             </div>
             <div class="row mt-5 pt-4 border-top">
                 <div class="col-12 text-center text-muted">
-                    <p>&copy; <?php echo date("Y"); ?> Standward Credit. All rights reserved.</p>
+                    <p>&copy; <?php echo date("Y"); ?> Standward. All rights reserved.</p>
                 </div>
             </div>
         </div>
