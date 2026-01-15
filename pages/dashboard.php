@@ -29,21 +29,25 @@ $page_title = "Overview";
     <!-- Top Bar -->
     <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
         <div>
-            <h1 class="h2 mb-0">Good afternoon,
-                <?php echo htmlspecialchars($user_name ? explode(' ', $user_name)[0] : 'User'); ?>
-            </h1>
-            <p class="text-muted small mb-0">Last login: <?php echo date('Y-m-d H:i'); // Place for now ?></p>
-        </div>
-        <div class="d-flex align-items-center gap-3">
-            <a href="#" class="text-secondary position-relative">
-                <i class="bi bi-bell fs-5"></i>
-                <span
-                    class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
-                    <span class="visually-hidden">New alerts</span>
-                </span>
-            </a>
-            <a href="#" class="btn btn-sm btn-outline-secondary">Help</a>
-        </div>
+            <div class="d-flex align-items-center">
+                <button class="btn btn-link p-0 me-3 d-md-none text-dark" id="sidebarToggle">
+                    <i class="bi bi-list fs-1"></i>
+                </button>
+                <h1 class="h2 mb-0">Good afternoon,
+                    <?php echo htmlspecialchars($user_name ? explode(' ', $user_name)[0] : 'User'); ?>
+                </h1>
+                <p class="text-muted small mb-0">Last login: <?php echo date('Y-m-d H:i'); // Place for now ?></p>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <a href="#" class="text-secondary position-relative">
+                    <i class="bi bi-bell fs-5"></i>
+                    <span
+                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                        <span class="visually-hidden">New alerts</span>
+                    </span>
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-secondary">Help</a>
+            </div>
     </header>
 
     <!-- Account Summary Section -->

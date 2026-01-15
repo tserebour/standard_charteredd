@@ -1,9 +1,12 @@
-<div class="sidebar d-flex flex-column flex-shrink-0 p-0" style="width: 280px;">
-    <div class="p-4 border-bottom">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+<div id="sidebar" class="sidebar d-flex flex-column flex-shrink-0 p-0">
+    <div class="p-4 border-bottom d-flex justify-content-between align-items-center">
+        <a href="/" class="d-flex align-items-center link-dark text-decoration-none">
             <img src="../Personal, Private and Corporate Place _ Standard Chartered_files/Scb_logo.png" alt="Standward"
                 style="max-width: 180px;">
         </a>
+        <button class="btn btn-link p-0 d-md-none text-dark" id="sidebarClose">
+            <i class="bi bi-x-lg fs-4"></i>
+        </button>
     </div>
     <ul class="nav nav-pills flex-column mb-auto py-2">
         <li class="nav-item">
