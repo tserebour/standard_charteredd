@@ -99,8 +99,8 @@ $transactions = $stmt->fetchAll();
                     <label class="form-label small text-muted">Search</label>
                     <div class="input-group">
                         <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control border-start-0 ps-0" name="search"
-                            placeholder="Description..." value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
+                        <input type="text" class="form-control border-start-0 ps-0" name="search" Place="Description..."
+                            value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
                     </div>
                 </div>
                 <div class="col-md-3">

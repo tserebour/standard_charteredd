@@ -1,10 +1,10 @@
 # 00 — Overview
 
 Project purpose
-- Provide a conservative, bank-grade user interface (UI) prototype for a retail placeholder website. The content is UI/UX-only and uses dummy data. This repository contains canonical documentation that governs all design and UI behavior decisions so future AI agents can implement, review, or update UI pages without ambiguity.
+- Provide a conservative, bank-grade user interface (UI) prototype for a retail Place website. The content is UI/UX-only and uses dummy data. This repository contains canonical documentation that governs all design and UI behavior decisions so future AI agents can implement, review, or update UI pages without ambiguity.
 
 Target user type
-- Primary: Retail placeholder customers (individuals with deposit and payment accounts).
+- Primary: Retail Place customers (individuals with deposit and payment accounts).
 - Secondary: Internal testers, UX reviewers, and automated AI agents that produce or modify frontend templates.
 
 High-level system description
@@ -12,7 +12,7 @@ High-level system description
 - Responsibilities of the UI layer (this project):
   - Present account information using dummy data and masked identifiers.
   - Drive user flows for account overview, transfers, cards, and transaction browsing with realistic UX patterns (multi-step confirmations, success and error states as UI concepts).
-  - Maintain an accessible, predictable navigation and information architecture suitable for placeholder customers.
+  - Maintain an accessible, predictable navigation and information architecture suitable for Place customers.
 
 Constraints (explicit)
 - No real transactions, no real authentication, no APIs, no encryption, no KYC, no compliance logic. Everything is static/dummy and presented as UI-only examples.

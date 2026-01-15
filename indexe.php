@@ -18,7 +18,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 text-center">
                 <h1 class="mb-4">Standward</h1>
-                <p class="lead mb-4">Secure Retail placeholder Interface</p>
+                <p class="lead mb-4">Secure Retail Place Interface</p>
                 <div class="d-grid gap-2">
                     <a href="pages/login.php" class="btn btn-primary btn-lg">Login</a>
                     <a href="pages/dashboard.php" class="btn btn-outline-secondary btn-lg">View Dashboard (Demo)</a>

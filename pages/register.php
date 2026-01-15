@@ -35,7 +35,7 @@ try {
         <div class="register-container">
             <div class="text-center mb-4">
                 <div class="logo mb-3">
-                    <img src="../Personal, Private and Corporate placeholder _ Standard Chartered_files/Scb_logo.png"
+                    <img src="../Personal, Private and Corporate Place _ Standard Chartered_files/Scb_logo.png"
                         alt="Standward" style="max-width: 200px;">
                 </div>
                 <!-- <h1 class="h3 mb-3 fw-normal text-brand">Standward</h1> -->
@@ -71,7 +71,7 @@ try {
                         <div class="mb-3">
                             <label for="full_name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="full_name" name="full_name" required
-                                placeholder="e.g. John Doe">
+                                Place="e.g. John Doe">
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
@@ -102,7 +102,7 @@ try {
                         <div class="mb-3">
                             <label for="security_answer" class="form-label">Security Answer</label>
                             <input type="text" class="form-control" id="security_answer" name="security_answer" required
-                                placeholder="Enter your answer">
+                                Place="Enter your answer">
                         </div>
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-primary btn-lg">Create Account</button>

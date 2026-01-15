@@ -51,7 +51,8 @@ $page_title = "Cards";
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card h-100 card-visual-wrapper border-0 shadow-sm">
                         <!-- Visual Card Representation CSS-only -->
-                        <div class="card-visual p-4 text-white mb-3 rounded-4 bg-gradient-dark position-relative overflow-hidden">
+                        <div
+                            class="card-visual p-4 text-white mb-3 rounded-4 bg-gradient-dark position-relative overflow-hidden">
                             <div class="d-flex justify-content-between align-items-start mb-4">
                                 <span class="badge bg-light text-dark opacity-75"><?php echo $card['type']; ?></span>
                                 <i class="bi bi-wifi fs-4"></i>
@@ -70,7 +71,7 @@ $page_title = "Cards";
                                     <div class="fw-bold"><?php echo $card['expiry']; ?></div>
                                 </div>
                             </div>
-                            <!-- Network Icon Placeholder -->
+                            <!-- Network Icon Place -->
                             <div class="position-absolute bottom-0 end-0 p-3 opacity-25">
                                 <i class="bi bi-credit-card-2-front fs-1"></i>
                             </div>
@@ -79,26 +80,26 @@ $page_title = "Cards";
                         <div class="card-body p-0">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div>
-                                    <h3 class="h6 mb-0"><?php echo $card['network']; ?> <?php echo $card['type']; ?></h3>
+                                    <h3 class="h6 mb-0"><?php echo $card['network']; ?>         <?php echo $card['type']; ?></h3>
                                     <span class="small text-muted">Linked to <?php echo substr($card['number'], -4); ?></span>
                                 </div>
                                 <?php if ($card['status'] === 'Active'): ?>
                                     <span class="badge bg-success-subtle text-success border border-success-subtle">Active</span>
                                 <?php else: ?>
-                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle"><?php echo $card['status']; ?></span>
+                                    <span
+                                        class="badge bg-danger-subtle text-danger border border-danger-subtle"><?php echo $card['status']; ?></span>
                                 <?php endif; ?>
                             </div>
 
                             <ul class="list-group list-group-flush border-top border-bottom mb-3">
-                                 <li class="list-group-item d-flex justify-content-between align-items-center py-3">
+                                <li class="list-group-item d-flex justify-content-between align-items-center py-3">
                                     <div>
                                         <i class="bi bi-lock me-2 text-muted"></i>
                                         Lock Card
                                     </div>
                                     <div class="form-check form-switch">
-                                        <input class="form-check-input card-lock-toggle" type="checkbox" role="switch" 
-                                            data-card-id="<?php echo $card['id']; ?>"
-                                            <?php echo ($card['status'] !== 'Active') ? 'checked' : ''; ?>>
+                                        <input class="form-check-input card-lock-toggle" type="checkbox" role="switch"
+                                            data-card-id="<?php echo $card['id']; ?>" <?php echo ($card['status'] !== 'Active') ? 'checked' : ''; ?>>
                                     </div>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-center py-3">
@@ -109,7 +110,7 @@ $page_title = "Cards";
                                     <i class="bi bi-chevron-right text-muted"></i>
                                 </li>
                             </ul>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -119,14 +120,16 @@ $page_title = "Cards";
 </main>
 
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-  <div id="cardIoast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="d-flex">
-      <div class="toast-body">
-        Card status updated.
-      </div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    <div id="cardIoast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive"
+        aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                Card status updated.
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
     </div>
-  </div>
 </div>
 
 <?php include __DIR__ . '/../includes/footer.php'; ?>

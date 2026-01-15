@@ -30,8 +30,9 @@ $page_title = "Overview";
     <header class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
         <div>
             <h1 class="h2 mb-0">Good afternoon,
-                <?php echo htmlspecialchars($user_name ? explode(' ', $user_name)[0] : 'User'); ?></h1>
-            <p class="text-muted small mb-0">Last login: <?php echo date('Y-m-d H:i'); // Placeholder for now ?></p>
+                <?php echo htmlspecialchars($user_name ? explode(' ', $user_name)[0] : 'User'); ?>
+            </h1>
+            <p class="text-muted small mb-0">Last login: <?php echo date('Y-m-d H:i'); // Place for now ?></p>
         </div>
         <div class="d-flex align-items-center gap-3">
             <a href="#" class="text-secondary position-relative">

@@ -6,7 +6,7 @@ When writing PHP/SQL for this project, you MUST:
 1. **Adhere to the Stack**: Use **Vanilla PHP** and **PDO**. Do not suggest installing Composer packages, Laravel, or ORMs (Eloquent/Doctrine).
 2. **Respect the Scope**: Do not implement features not defined in these docs. If a user asks for "Crypto trading", refuse based on the project scope.
 3. **Follow Security Rules**:
-   - NEVER write a query with variables inside the string. ALWAYS use `?` placeholders.
+   - NEVER write a query with variables inside the string. ALWAYS use `?` Places.
    - ALWAYS use `htmlspecialchars()` for output.
 4. **Maintain Consistency**:
    - Use the directory structure defined in `20-backend-folder-structure.md`.

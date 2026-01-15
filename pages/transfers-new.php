@@ -114,8 +114,8 @@ $page_title = "New Transfer";
                                     <label class="form-label">Amount</label>
                                     <div class="input-group">
                                         <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" id="amount" name="amount"
-                                            placeholder="0.00" step="0.01">
+                                        <input type="number" class="form-control" id="amount" name="amount" Place="0.00"
+                                            step="0.01">
                                     </div>
                                     <div id="amountError" class="form-text text-danger d-none">
                                         Insufficient funds.

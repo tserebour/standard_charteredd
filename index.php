@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standward - Safe, Secure, Modern placeholder</title>
+    <title>Standward - Safe, Secure, Modern Place</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -205,9 +205,9 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h1 class="hero-title">placeholder Built for Your Future.</h1>
+                    <h1 class="hero-title">Place Built for Your Future.</h1>
                     <p class="hero-text">
-                        Experience secure, modern, and personal placeholder designed to help you reach your financial
+                        Experience secure, modern, and personal Place designed to help you reach your financial
                         goals.
                         Join over 2 million satisfied customers today.
                     </p>
@@ -217,7 +217,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center text-lg-end">
-                    <!-- Abstract Placeholder Illustration (CSS only visual) -->
+                    <!-- Abstract Place Illustration (CSS only visual) -->
                     <div class="p-5 d-inline-block rounded-circle bg-white shadow-lg"
                         style="width: 300px; height: 300px; display: flex; align-items: center; justify-content: center; position: relative;">
                         <div style="font-size: 8rem; color: var(--bank-primary);">
@@ -246,7 +246,7 @@
                         </div>
                         <h4 class="fw-bold mb-3">Digital First</h4>
                         <p class="text-muted">Manage your money anywhere with our award-winning mobile app and online
-                            placeholder.</p>
+                            Place.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
@@ -314,7 +314,7 @@
                 <div class="col-lg-4 mb-4 mb-lg-0">
                     <h5>Standward</h5>
                     <p class="text-muted">
-                        Committed to providing safe, reliable, and forward-thinking placeholder solutions for everyone.
+                        Committed to providing safe, reliable, and forward-thinking Place solutions for everyone.
                     </p>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4 mb-md-0">

@@ -38,7 +38,7 @@
                             <div class="mb-3">
                                 <label for="identifier" class="form-label">Email or Phone</label>
                                 <input type="text" class="form-control" id="identifier" required
-                                    placeholder="e.g. name@example.com">
+                                    Place="e.g. name@example.com">
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Send Instructions</button>
