@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $target_account_id = null;
         if (is_numeric($to_payee_raw) && $to_payee_raw != $from_account_id) {
-            // Check if this target account exists (even if not verified perfectly as owned by user in broad banking, but docs say internal transfer = same user?)
+            // Check if this target account exists (even if not verified perfectly as owned by user in broad placeholder, but docs say internal transfer = same user?)
             // "Accounts must belong to the same user" -> OK so we check if it is owned by user.
             $stmtCheck = $pdo->prepare("SELECT id FROM accounts WHERE id = ? AND user_id = ?");
             $stmtCheck->execute([$to_payee_raw, $user_id]);

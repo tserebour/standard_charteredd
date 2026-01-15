@@ -35,7 +35,7 @@ try {
         <div class="register-container">
             <div class="text-center mb-4">
                 <div class="logo mb-3">
-                    <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
+                    <img src="../Personal, Private and Corporate placeholder _ Standard Chartered_files/Scb_logo.png"
                         alt="Standward" style="max-width: 200px;">
                 </div>
                 <!-- <h1 class="h3 mb-3 fw-normal text-brand">Standward</h1> -->

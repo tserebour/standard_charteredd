@@ -1,7 +1,7 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-0" style="width: 280px;">
     <div class="p-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
+            <img src="../Personal, Private and Corporate placeholder _ Standard Chartered_files/Scb_logo.png"
                 alt="Standward" style="max-width: 180px;">
         </a>
     </div>

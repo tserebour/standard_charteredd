@@ -173,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-container">
         <div class="logo">
             <!-- Adjust logo path if needed -->
-            <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
+            <img src="../Personal, Private and Corporate placeholder _ Standard Chartered_files/Scb_logo.png"
                 alt="Standward">
         </div>
 

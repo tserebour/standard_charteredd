@@ -1,7 +1,7 @@
 # 13 — Backend Overview
 
 ## Purpose and Philosophy
-The backend layer exists to provide persistence, basic authentication, and logical validation to the retail banking interface. It replaces the frontend-only dummy data with a functional relational database.
+The backend layer exists to provide persistence, basic authentication, and logical validation to the retail placeholder interface. It replaces the frontend-only dummy data with a functional relational database.
 
 The implementation philosophy is **"Academic Demo"**:
 - **Simplicity over Scalability**: Use vanilla PHP and synchronous processing.
