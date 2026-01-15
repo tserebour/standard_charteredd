@@ -1,11 +1,13 @@
 <?php
 // config/db.php
 
-$host = 'localhost';
-$db = 'new_standard';
-$user = 'root';
-$pass = ''; // Default XAMPP password is empty
-$charset = 'utf8mb4';
+require_once __DIR__ . '/../includes/env_loader.php';
+
+$host = $_ENV['DB_HOST'] ?? 'localhost';
+$db = $_ENV['DB_NAME'] ?? 'new_standard';
+$user = $_ENV['DB_USER'] ?? 'root';
+$pass = $_ENV['DB_PASS'] ?? '';
+$charset = $_ENV['DB_CHARSET'] ?? 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
