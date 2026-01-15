@@ -2,7 +2,7 @@
     <div class="p-4 border-bottom">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img src="../Personal, Private and Corporate Banking _ Standard Chartered_files/Scb_logo.png"
-                alt="Standard Chartered" style="max-width: 180px;">
+                alt="Standward Credit" style="max-width: 180px;">
         </a>
     </div>
     <ul class="nav nav-pills flex-column mb-auto py-2">
