@@ -34,7 +34,8 @@
                 <a href="transfers-new.php?from=<?php echo $account['id']; ?>" class="btn btn-sm btn-primary">
                     Transfer
                 </a>
-                <a href="account-details.php?id=<?php echo $account['id']; ?>" class="btn btn-sm btn-outline-secondary">
+                <a href="transactions.php?account=<?php echo $account['id']; ?>"
+                    class="btn btn-sm btn-outline-secondary">
                     View Transactions
                 </a>
             </div>
