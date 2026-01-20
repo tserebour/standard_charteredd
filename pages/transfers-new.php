@@ -194,15 +194,12 @@ $page_title = "New Transfer";
             btnConfirm.parentNode.replaceChild(newBtn, btnConfirm);
 
             newBtn.addEventListener('click', () => {
-                if (payeeSelect && payeeSelect.selectedIndex >= 0) {
-                    hiddenPayeeName.value = payeeSelect.options[payeeSelect.selectedIndex].text;
-                }
-                newBtn.disabled = true;
-                newBtn.innerText = 'Processing...';
-                form.submit();
+                const modal = new bootstrap.Modal(document.getElementById('transferUnavailableModal'));
+                modal.show();
             });
         }
     });
 </script>
 
+<?php include __DIR__ . '/../includes/components/transfer-modal.php'; ?>
 <?php include __DIR__ . '/../includes/footer.php'; ?>
