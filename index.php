@@ -212,7 +212,7 @@
                         Join over 2 million satisfied customers today.
                     </p>
                     <div class="d-flex gap-3">
-                        <a href="#" class="btn btn-bank-primary btn-lg">Get Started</a>
+                        <a href="pages/login.php" class="btn btn-bank-primary btn-lg">Get Started</a>
                         <a href="#" class="btn btn-bank-outline btn-lg">Learn More</a>
                     </div>
                 </div>
